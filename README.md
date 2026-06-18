@@ -16,11 +16,11 @@ cleanuparr: 12032
 plex
 pocket-id : 12055
 prowlarr: 12030
-qbittorrent: 12008
-qbiutorrent2: 12012
-qbittorentanime: 12017
+QB1: 12008
+QB2: 12012
+QB3A: 12017
 radarranime: 12016
-sabnzb: 8080
+SN: 8080
 sonarranime: 12015
 tatulli: 12011
 unpackarr: 12033
