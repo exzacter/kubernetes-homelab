@@ -1,0 +1,39 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+  identity:
+    hostname: ubuntu-server
+    username: ubuntu
+    password: "$6$Wp2NDLRPUuaemSNj$aeYGlJnrjVnD/ui5zSFf3bKwsuyICGsqJdfzrZw5aSMz4ZJJcwzxwveHcFCPK5z.p.gOugaCHs5FPZSe3rEqp1"
+  ssh:
+    install-server: true
+    allow-pw: true
+    ssh-quiet-keygen: true
+  network:
+    version: 2
+    ethernets:
+      any:
+        match:
+          name: en*
+        dhcp4: true
+        dhcp6: false
+  apt:
+    conf: |
+      Unattended-Upgrade::Package-Blacklist {
+          ".*";
+      };
+  packages:
+    - qemu-guest-agent
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  late-commands:
+    - echo "PasswordAuthentication yes" > /target/etc/ssh/sshd_config.d/60-packer.conf
+    - echo "ubuntu ALL=(ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/90-packer-nopasswd
+    - chmod 440 /target/etc/sudoers.d/90-packer-nopasswd
+    - curtin in-target -- systemctl enable ssh

@@ -1,0 +1,9 @@
+*.tfstate
+*.tfstate.backup
+.terraform/
+*.tfvars
+secrets.pkrvars.hcl
+ansible/inventory/hosts.ini
+kubeconfig
+packer/manifest.json
+packer/downloaded_iso_path/
